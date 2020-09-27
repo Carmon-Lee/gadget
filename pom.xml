@@ -20,6 +20,7 @@
         <module>socket</module>
         <module>jdk</module>
         <module>wheel</module>
+        <module>os</module>
     </modules>
 
     <properties>
@@ -47,6 +48,12 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>2.13.3</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
