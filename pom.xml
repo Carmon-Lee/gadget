@@ -21,6 +21,7 @@
         <module>jdk</module>
         <module>wheel</module>
         <module>os</module>
+        <module>network</module>
     </modules>
 
     <properties>

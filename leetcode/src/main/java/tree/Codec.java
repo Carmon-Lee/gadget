@@ -47,20 +47,6 @@ public class Codec {
         return null;
     }
 
-
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
-
-
-
-
     public int[] countBits(int num) {
         if (num==0) {
             return new int[]{0};
