@@ -1,4 +1,4 @@
-package dp;
+package dp.rob;
 
 /**
  * @author guang.li
@@ -6,9 +6,9 @@ package dp;
  */
 public class L_198_rob {
 
-//    [1,2,3,1]
+    //    [1,2,3,1]
     public int rob(int[] nums) {
-        if (nums.length==0) {
+        if (nums.length == 0) {
             return 0;
         }
         int robbed = nums[0], notrob = 0;
@@ -20,6 +20,22 @@ public class L_198_rob {
 
         return Math.max(robbed, notrob);
     }
+
+    public int rob1(int[] nums) {
+        if (nums.length == 0) {
+            return 0;
+        }
+
+        int prev = 0, cur = 0, temp;
+        for (int n : nums) {
+            temp = cur;
+
+            cur = Math.max(cur, prev + n);
+            prev = temp;
+        }
+        return Math.max(prev, cur);
+    }
+
 
     public static void main(String[] args) {
 
