@@ -2,7 +2,7 @@
  * frxs Inc.  湖南兴盛优选电子商务有限公司.
  * Copyright (c) 2017-2019. All Rights Reserved.
  */
-package com.bio;
+package nio;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -15,12 +15,12 @@ import java.util.concurrent.TimeUnit;
  * @author liguang
  * @version BioWorker.java, v 0.1 2020年09月03日 8:15 下午
  */
-public class BioServer implements Runnable {
+public class BlockingServer implements Runnable {
 
     ServerSocket serverSocket;
     ExecutorService workerPool;
 
-    public BioServer() {
+    public BlockingServer() {
         try {
             serverSocket = new ServerSocket(8888);
         } catch (IOException e) {
