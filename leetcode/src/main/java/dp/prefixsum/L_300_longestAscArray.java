@@ -1,8 +1,4 @@
-package dp;
-
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.Deque;
+package dp.prefixsum;
 
 /**
  * @author guang.li

@@ -1,4 +1,4 @@
-package arr;
+package array;
 
 /**
  * @author guang.li

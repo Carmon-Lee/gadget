@@ -1,4 +1,4 @@
-package dp;
+package dp.prefixsum;
 
 /**
  * @author guang.li
