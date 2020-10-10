@@ -1,12 +1,14 @@
 package dp.lcs;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
+ * 求两个字符串的所有最长子序列
+ * 注意：这里说的子序列，可以是非连续的，但是要保持原有的顺序
+ *
  * @author guang.li
  * @version LongestCommonSequenceAll.java v 1.0 2020/10/9 9:31
  */

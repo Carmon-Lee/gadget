@@ -1,9 +1,10 @@
 package dp.lcs;
 
 import java.util.Arrays;
-import java.util.List;
 
 /**
+ * 求两个字符串的最长子序列长度
+ *
  * @author guang.li
  * @version LongestCommonSequence.java v 1.0 2020/10/9 8:50
  */
