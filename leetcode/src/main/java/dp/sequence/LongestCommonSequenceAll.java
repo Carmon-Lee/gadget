@@ -1,4 +1,4 @@
-package dp.lcs;
+package dp.sequence;
 
 import java.util.ArrayList;
 import java.util.Collections;
