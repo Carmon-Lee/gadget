@@ -343,6 +343,7 @@ public abstract class MyAbstractQueuedSynchronizer
             }
         }
         enq(node);
+        System.out.println("Thread " + Thread.currentThread() + " add waitor");
         return node;
     }
 
@@ -523,6 +524,7 @@ public abstract class MyAbstractQueuedSynchronizer
      */
     private static boolean shouldParkAfterFailedAcquire(Node pred, Node node) {
         int ws = pred.waitStatus;
+        System.out.println("Thread "+Thread.currentThread()+" status:"+ ws);
         if (ws == Node.SIGNAL)
             /*
              * This node has already set status asking a release
@@ -544,6 +546,11 @@ public abstract class MyAbstractQueuedSynchronizer
              * need a signal, but don't park yet.  Caller will need to
              * retry to make sure it cannot acquire before parking.
              */
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             compareAndSetWaitStatus(pred, ws, Node.SIGNAL);
         }
         return false;
