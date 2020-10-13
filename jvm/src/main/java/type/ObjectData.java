@@ -1,18 +1,33 @@
 package type;
 
-import org.openjdk.jol.info.ClassLayout;
-
-import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 public class ObjectData {
 
     public static void main(String[] args) {
-        Integer a = new Integer(1);
-        String s = "string";
-        System.out.println(ClassLayout.parseInstance(new int[]{}).toPrintable());
 
-        Arrays.sort(new int[][]{}, (o1,o2)->{
-            return o1[0]-o2[0];
-        });
+//        try {
+//            TimeUnit.SECONDS.sleep(60);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+        int count = 0;
+        for (int i = 0; i < 1000_000; i++) {
+            try {
+                TimeUnit.SECONDS.sleep(3);
+                System.out.println("wake up");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            synchronized (ObjectData.class) {
+                count++;
+            }
+        }
+
+
+
+
     }
 }
