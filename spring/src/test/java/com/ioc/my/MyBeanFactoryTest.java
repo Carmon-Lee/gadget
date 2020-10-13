@@ -1,6 +1,7 @@
 package com.ioc.my;
 
-import com.ioc.my.service.MyUserController;
+import com.my.ioc.twomap.MyBeanFactory;
+import com.common.service.MyUserController;
 import org.junit.Test;
 
 public class MyBeanFactoryTest {

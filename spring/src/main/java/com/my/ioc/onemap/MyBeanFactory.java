@@ -1,4 +1,4 @@
-package com.ioc.my;
+package com.my.ioc.onemap;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -8,7 +8,6 @@ import java.util.concurrent.ConcurrentHashMap;
 public class MyBeanFactory {
 
     private Map<Class<?>, Object> singleObjects = new ConcurrentHashMap<>();
-
 
     public Object getBean(Class<?> type) {
         Object singletonObject = singleObjects.get(type);
