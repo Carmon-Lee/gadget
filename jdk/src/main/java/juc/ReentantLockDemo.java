@@ -1,31 +1,25 @@
-package type;
-
-import org.openjdk.jol.info.ClassLayout;
+package juc;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ObjectData {
+public class ReentantLockDemo {
 
     public static void main(String[] args) {
-        Object obj = new Object();
-        System.out.println(ClassLayout.parseInstance(obj).toPrintable());
-
-
         ExecutorService executorService = Executors.newFixedThreadPool(1000);
 
         ReentrantLock lock = new ReentrantLock(true);
 
         for (int i = 0; i < 1000; i++) {
             executorService.execute(()->{
-                synchronized (obj) {
-                    try {
-                        Thread.sleep(10);
-                    } catch (InterruptedException e) {
-
-                    }
-                }
+//                synchronized (ReentantLockDemo.class) {
+//                    try {
+//                        Thread.sleep(10);
+//                    } catch (InterruptedException e) {
+//
+//                    }
+//                }
 
 //                try {
 //                    Thread.sleep(10);
@@ -51,14 +45,14 @@ public class ObjectData {
 
         int count = 0;
         for (int i = 0; i < 1000_000_00; i++) {
-            synchronized (obj) {
+            synchronized (ReentantLockDemo.class) {
                 count++;
             }
         }
 
         long start = System.currentTimeMillis();
         for (int i = 0; i < 1000_000_00; i++) {
-            synchronized (obj) {
+            synchronized (ReentantLockDemo.class) {
                 count++;
             }
 ////
@@ -72,7 +66,5 @@ public class ObjectData {
         }
 
         System.out.println(System.currentTimeMillis()-start);
-
-        System.out.println(ClassLayout.parseInstance(obj).toPrintable());
     }
 }
