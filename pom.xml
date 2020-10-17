@@ -24,6 +24,7 @@
         <module>network</module>
         <module>jvm</module>
         <module>designpattern</module>
+        <module>jedis</module>
     </modules>
 
     <properties>
@@ -140,6 +141,12 @@
                 <groupId>org.openjdk.jol</groupId>
                 <artifactId>jol-core</artifactId>
                 <version>0.10</version>
+            </dependency>
+
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>2.9.0</version>
             </dependency>
 
 

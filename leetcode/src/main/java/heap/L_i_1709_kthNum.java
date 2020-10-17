@@ -36,5 +36,12 @@ public class L_i_1709_kthNum {
 
     public static void main(String[] args) {
         new L_i_1709_kthNum().getKthMagicNumber(10);
+
+        try {
+            Thread.sleep(20);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        new Thread(()->{}).start();
     }
 }

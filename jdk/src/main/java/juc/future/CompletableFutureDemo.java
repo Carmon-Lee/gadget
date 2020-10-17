@@ -16,10 +16,14 @@ public class CompletableFutureDemo {
     public static void main(String[] args) throws InterruptedException {
 
 
-        CompletableFuture<Void> future = CompletableFuture.runAsync(() -> System.out.println("start..."));
-        CompletableFuture<Void> future1 = future.thenAccept(s -> {
-            System.out.println(s);
-        });
+        CompletableFuture
+                .runAsync(() -> System.out.println("start..."))
+                .thenRun(() -> System.out.println("startted!"))
+                .exceptionally(throwable -> {
+                    System.out.println(throwable);
+                    return null;
+                });
+
 
         TimeUnit.SECONDS.sleep(10);
     }
