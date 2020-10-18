@@ -24,6 +24,7 @@
         <module>network</module>
         <module>jvm</module>
         <module>designpattern</module>
+        <module>consensus</module>
         <module>jedis</module>
     </modules>
 
