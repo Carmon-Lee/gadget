@@ -26,7 +26,7 @@
         <module>designpattern</module>
         <module>consensus</module>
         <module>jedis</module>
-        <module>http</module>
+        <module>framework</module>
     </modules>
 
     <properties>
