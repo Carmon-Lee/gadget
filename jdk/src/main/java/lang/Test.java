@@ -47,6 +47,10 @@ public class Test {
 
 
 
+
+
+
+
     public static void main(String[] args) {
 //        System.out.println(new Test().arrangeCoins(1804289383));
         System.out.println(new Test().strToInt("  -42"));
