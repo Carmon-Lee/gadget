@@ -27,6 +27,7 @@
         <module>consensus</module>
         <module>jedis</module>
         <module>framework</module>
+        <module>microservice</module>
     </modules>
 
     <properties>

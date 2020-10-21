@@ -4,6 +4,8 @@
  */
 package string;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,7 +50,35 @@ public class L_1297_maxFrequency {
     }
 
 
+    public String removeKdigits(String num, int k) {
+        int len = num.length();
+        if (k>=len) {
+            return "0";
+        }
+        int retain = len-k;
+        Deque<Character> stack = new ArrayDeque<>();
+        for (int i=0;i<len;i++) {
+            while (!stack.isEmpty() && stack.size()+len-i>retain && stack.peek()>num.charAt(i)) {
+                stack.pop();
+            }
+            stack.push(num.charAt(i));
+        }
+        // 0200
+        while (stack.size()>0 && stack.getLast()=='0') {
+            stack.removeLast();
+        }
+        char[] chars = new char[Math.min(retain, stack.size())];
+        for (int i=0;i<chars.length;i++) {
+            chars[i] = stack.removeLast();
+        }
+        //System.out.println(stack);
+        return chars.length==0?"0": new String(chars);
+    }
+
+
     public static void main(String[] args) {
-        new L_1297_maxFrequency().maxFreq("aabcabcab", 2, 2, 3);
+//        "1234567890"
+//9
+        new L_1297_maxFrequency().removeKdigits("1234567890", 9);
     }
 }
