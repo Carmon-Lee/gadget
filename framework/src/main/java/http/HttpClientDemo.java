@@ -8,10 +8,7 @@ import http.config.HttpAsyncClientInitBean;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.concurrent.FutureCallback;
-import org.apache.http.entity.ContentType;
 
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -36,7 +33,6 @@ public class HttpClientDemo {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
         FutureCallback<HttpResponse> futureCallback = new FutureCallback<HttpResponse>() {
             @Override
