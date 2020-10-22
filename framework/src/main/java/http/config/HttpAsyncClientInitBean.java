@@ -5,6 +5,7 @@
 package http.config;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.HttpHost;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
@@ -53,12 +54,13 @@ public class HttpAsyncClientInitBean extends AbstractHttpConfigBean {
             connectionMonitor = new ConnectionMonitor(connectionManager);
             connectionMonitor.start();
         }
-        closeableHttpAsyncClient = HttpAsyncClients.custom().
-                setKeepAliveStrategy(new GateWayKeepAliveStrategy()).
-                setConnectionManager(connectionManager).
-        setSSLHostnameVerifier(VERIFIER).
-                        setDefaultRequestConfig(buildDefaultRequestConfig()).
-                        build();
+        closeableHttpAsyncClient = HttpAsyncClients.custom()
+                .setKeepAliveStrategy(new GateWayKeepAliveStrategy())
+                .setConnectionManager(connectionManager)
+                .setSSLHostnameVerifier(VERIFIER)
+                .setDefaultRequestConfig(buildDefaultRequestConfig())
+                .setProxy(new HttpHost("localhost",8888))
+                .build();
         closeableHttpAsyncClient.start();
     }
 
@@ -73,8 +75,8 @@ public class HttpAsyncClientInitBean extends AbstractHttpConfigBean {
                 setSoKeepAlive(true).
                 build();
         PoolingNHttpClientConnectionManager connManager = new PoolingNHttpClientConnectionManager(new DefaultConnectingIOReactor(ioReactorConfig), getRegistry());
-        connManager.setDefaultMaxPerRoute(10);
-        connManager.setMaxTotal(10);
+        connManager.setDefaultMaxPerRoute(1);
+        connManager.setMaxTotal(1);
         return connManager;
     }
 

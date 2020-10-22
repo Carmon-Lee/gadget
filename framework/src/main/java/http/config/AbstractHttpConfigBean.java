@@ -119,7 +119,7 @@ public abstract class AbstractHttpConfigBean  {
     class GateWayKeepAliveStrategy extends DefaultConnectionKeepAliveStrategy {
         @Override
         public long getKeepAliveDuration(HttpResponse httpResponse, HttpContext httpContext) {
-            return 1000_000_000;
+            return -1;
         }
     }
 
