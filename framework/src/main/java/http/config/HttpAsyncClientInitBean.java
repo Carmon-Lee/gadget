@@ -59,7 +59,7 @@ public class HttpAsyncClientInitBean extends AbstractHttpConfigBean {
                 .setConnectionManager(connectionManager)
                 .setSSLHostnameVerifier(VERIFIER)
                 .setDefaultRequestConfig(buildDefaultRequestConfig())
-                .setProxy(new HttpHost("localhost",8888))
+//                .setProxy(new HttpHost("localhost",8888))
                 .build();
         closeableHttpAsyncClient.start();
     }
