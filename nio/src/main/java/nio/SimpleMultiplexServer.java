@@ -7,6 +7,9 @@ import java.nio.channels.SocketChannel;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * 自己轮训监控连接中的事件
+ */
 public class SimpleMultiplexServer {
 
     public static void main(String[] args) {
