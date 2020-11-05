@@ -1,7 +1,6 @@
 package slidewindow;
 
 import java.util.ArrayDeque;
-import java.util.Arrays;
 import java.util.Deque;
 
 /**
@@ -42,9 +41,40 @@ public class L_239_maxSlidingWindow {
         }
     }
 
+    public boolean validMountainArray(int[] A) {
+        int len = A.length;
+        if (len<3) {
+            return false;
+        }
+        int max = -1;
+        for (int i=1;i<len;i++) {
+            if (A[i-1]==A[i]) {
+                return false;
+            }
+            if (max==-1 && A[i-1]>A[i]) {
+                return false;
+            }
+            if (max!=-1 && A[i-1]<A[i]) {
+                return false;
+            }
+            if (i<len-1 && A[i]>A[i-1] && A[i]>A[i+1]) {
+                if (max!=-1) {
+                    return false;
+                }
+                max = A[i];
+            }
+        }
+        return max!=-1;
+    }
+
 
     public static void main(String[] args) {
 //        3,3,5,5,6,7
-        System.out.println(Arrays.toString(new L_239_maxSlidingWindow().maxSlidingWindow(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3)));
+//        System.out.println(Arrays.toString(new L_239_maxSlidingWindow().maxSlidingWindow(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3)));
+        System.out.println((new L_239_maxSlidingWindow().validMountainArray(new int[]{0,3,2,1})));
+        System.out.println((new L_239_maxSlidingWindow().validMountainArray(new int[]{1,2,3})));
+        System.out.println((new L_239_maxSlidingWindow().validMountainArray(new int[]{1,2,3})));
+        System.out.println((new L_239_maxSlidingWindow().validMountainArray(new int[]{3,2,1})));
+        System.out.println((new L_239_maxSlidingWindow().validMountainArray(new int[]{1,2,3,2,4,1})));
     }
 }
