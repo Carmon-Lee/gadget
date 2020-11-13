@@ -21,14 +21,21 @@ public class PostIterTraverse implements TreeTraverse {
         Deque<TreeNode> stack = new ArrayDeque<>();
         stack.push(root);
 
-        while (!stack.isEmpty()) {
-            TreeNode cur = stack.pop();
-            res.add(cur.val);
-            if (cur.right != null) {
-                stack.push(cur.right);
+        TreeNode cur = root;
+        TreeNode prev = null;
+        while (cur != null || !stack.isEmpty()) {
+            while (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
             }
-            if (cur.left != null) {
-                stack.push(cur.left);
+            cur = stack.peek();
+            if (cur.right != null && cur.right != prev) {
+                cur = cur.right;
+            } else {
+                res.add(cur.val);
+                prev = cur;
+                stack.pop();
+                cur = null;
             }
         }
 
