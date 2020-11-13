@@ -1,4 +1,4 @@
-package client;
+package async;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

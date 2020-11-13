@@ -21,30 +21,17 @@ public class PreIterTreeTraverse implements TreeTraverse {
 
         TreeNode cur = root;
         while (!stack.isEmpty() || cur != null) {
-            if (cur != null) {
-                res.add(cur.val);
-                if (cur.right != null) {
-                    stack.push(cur.right);
-                }
-                if (cur.left != null) {
-                    stack.push(cur.left);
-                }
-            } else {
+            while (cur!=null) {
+                // 获取节点值
+                System.out.println(cur);
+                stack.push(cur);
+                cur = cur.left;
+            }
+            if (!stack.isEmpty()) {
                 cur = stack.pop();
+                cur = cur.right;
             }
         }
-
-//        TreeNode cur = root;
-//        while (!stack.isEmpty() || cur != null) {
-//            if (cur != null) {
-//                res.add(cur.val);
-//                stack.push(cur);
-//                cur = cur.left;
-//            } else {
-//                cur = stack.pop().right;
-//            }
-//        }
-
         return res;
     }
 

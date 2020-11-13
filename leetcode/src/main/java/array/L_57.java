@@ -26,7 +26,7 @@ public class L_57 {
                     list.add(newInterval);
                     list.add(curInterval);
                     merged = true;
-                } else  {
+                } else {
                     if (newInterval[0] <= curInterval[1]) {
                         newInterval[0] = Math.min(curInterval[0], newInterval[0]);
                         newInterval[1] = Math.max(curInterval[1], newInterval[1]);
@@ -51,11 +51,15 @@ public class L_57 {
 
 
 
-
     public int[][] updateMatrix(int[][] matrix) {
+        boolean[][] visted = new boolean[matrix.length][matrix[0].length];
+        for (int i=0;i<matrix.length;i++) {
+            visted[i] = new boolean[matrix[0].length];
+        }
+
         for (int i=0;i<matrix.length;i++) {
             for (int j=0;j<matrix[0].length;j++) {
-                update(matrix, i, j);
+                update(matrix, visted, i, j);
             }
         }
         for (int i=0;i<matrix.length;i++) {
@@ -66,46 +70,31 @@ public class L_57 {
         return matrix;
     }
 
-    //[0,1,0,1,2]
-    //[1,1,0,0,1]
-    //[0,0,0,1,0]
-    //[1,0,1,1,2]
-    //[1,0,0,0,1]
-
-    //[0,1,1,0,0]
-    //[0,1,1,0,0]
-    //[0,1,0,0,1]
-    //[1,1,1,1,0]
-    //[1,0,0,1,0]
     private int[] surX = new int[]{0,0,-1,1};
     private int[] surY = new int[]{-1,1,0,0};
-    private int update(int[][] matrix, int x, int y) {
+    private int update(int[][] matrix, boolean[][] visted, int x, int y) {
         if (matrix[x][y]<=0) {
             return matrix[x][y];
         }
         int v = Integer.MIN_VALUE;
+        visted[x][y] = true;
         for (int i=0;i<4;i++) {
             int nx = x+surX[i];
             int ny = y+surY[i];
-            if (nx<0 || nx>=matrix.length || ny<0 || ny>=matrix[0].length) {
+            if (nx<0 || nx>=matrix.length || ny<0 || ny>=matrix[0].length || visted[nx][ny]) {
                 continue;
             }
-            if (matrix[nx][ny]>1) {
-                continue;
-            }
+            // 旁边等于0，当前节点为-1
             if (matrix[nx][ny]==0 && matrix[x][y]>0) {
                 matrix[x][y] = -1;
+                visted[x][y] = false;
                 return -1;
             }
-            if (matrix[nx][ny]<=0) {
-                v = Math.max(v, matrix[nx][ny]);
-            } else {
-                //System.out.println(nx + " " + ny);
-                matrix[nx][ny] ++;
-                v = update(matrix, nx, ny);
-            }
+            v = Math.max(v, update(matrix, visted, nx, ny));
         }
-        if (matrix[x][y]<0) {
+
+        visted[x][y] = false;
+        if (matrix[x][y]<=0) {
             return matrix[x][y];
         }
         matrix[x][y] = v-1;
@@ -114,9 +103,11 @@ public class L_57 {
     }
 
 
+
+
     //    [1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8]
     public static void main(String[] args) {
-        System.out.println(Arrays.deepToString(new L_57().updateMatrix(new int[][]{{0,1,1,0,0},{0,1,1,0,0},{0,1,0,0,1},{1,1,1,1,0},{1,0,0,1,0}})));
+        System.out.println(Arrays.deepToString(new L_57().updateMatrix(new int[][]{{1, 0, 1, 1, 0, 0, 1, 0, 0, 1}, {0, 1, 1, 0, 1, 0, 1, 0, 1, 1}, {0, 0, 1, 0, 1, 0, 0, 1, 0, 0}, {1, 0, 1, 0, 1, 1, 1, 1, 1, 1}, {0, 1, 0, 1, 1, 0, 0, 0, 0, 1}, {0, 0, 1, 0, 1, 1, 1, 0, 1, 0}, {0, 1, 0, 1, 0, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 1, 1, 1, 1, 0, 1}, {1, 1, 1, 1, 1, 1, 1, 0, 1, 0}, {1, 1, 1, 1, 0, 1, 0, 0, 1, 1}})));
 //        System.out.println(Arrays.deepToString(new L_57().insert(new int[][]{{1, 2}, {3, 5}, {6, 7}, {8, 10}, {12, 16}}, new int[]{4, 8})));
     }
 }
