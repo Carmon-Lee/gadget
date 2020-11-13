@@ -23,7 +23,7 @@ public class PreIterTreeTraverse implements TreeTraverse {
         while (!stack.isEmpty() || cur != null) {
             while (cur!=null) {
                 // 获取节点值
-                System.out.println(cur);
+                res.add(cur.val);
                 stack.push(cur);
                 cur = cur.left;
             }

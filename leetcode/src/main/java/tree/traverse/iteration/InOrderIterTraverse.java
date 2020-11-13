@@ -21,19 +21,17 @@ public class InOrderIterTraverse implements TreeTraverse {
         Deque<TreeNode> stack = new ArrayDeque<>();
         stack.push(root);
 
-        TreeNode prev = null;
-        while (!stack.isEmpty()) {
-            TreeNode cur = stack.pop();
-            while (cur.left != null) {
-                cur = cur.left;
-                stack.push(cur);
-            }
+        TreeNode cur = root;
 
-            if (cur.right != null && prev != cur.right) {
-                stack.push(cur.right);
-            } else {
-                prev = cur;
+        while (cur != null || !stack.isEmpty()) {
+            while (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+            if (!stack.isEmpty()) {
+                cur = stack.pop();
                 res.add(cur.val);
+                cur = cur.right;
             }
         }
 
