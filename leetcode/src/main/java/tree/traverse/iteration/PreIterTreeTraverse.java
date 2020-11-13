@@ -22,15 +22,12 @@ public class PreIterTreeTraverse implements TreeTraverse {
         TreeNode cur = root;
         while (!stack.isEmpty() || cur != null) {
             while (cur!=null) {
-                // 获取节点值
-                res.add(cur.val);
                 stack.push(cur);
+                res.add(cur.val);
                 cur = cur.left;
             }
-            if (!stack.isEmpty()) {
-                cur = stack.pop();
-                cur = cur.right;
-            }
+            cur = stack.pop();
+            cur = cur.right;
         }
         return res;
     }

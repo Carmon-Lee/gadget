@@ -28,11 +28,9 @@ public class InOrderIterTraverse implements TreeTraverse {
                 stack.push(cur);
                 cur = cur.left;
             }
-            if (!stack.isEmpty()) {
-                cur = stack.pop();
-                res.add(cur.val);
-                cur = cur.right;
-            }
+            cur = stack.pop();
+            res.add(cur.val);
+            cur = cur.right;
         }
 
         return res;
