@@ -28,6 +28,7 @@
         <module>jedis</module>
         <module>framework</module>
         <module>microservice</module>
+        <module>disruptor</module>
     </modules>
 
     <properties>
@@ -152,6 +153,12 @@
                 <version>2.9.0</version>
             </dependency>
 
+            <!-- https://mvnrepository.com/artifact/com.lmax/disruptor -->
+            <dependency>
+                <groupId>com.lmax</groupId>
+                <artifactId>disruptor</artifactId>
+                <version>3.4.2</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>

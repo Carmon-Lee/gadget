@@ -1,5 +1,7 @@
 package array;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author guang.li
  * @version RingArray.java v 1.0 2020/9/30 12:13
@@ -33,8 +35,19 @@ public class RingArray {
 
 
     public static void main(String[] args) {
-        System.out.println(1 << 31);
-        new RingArray().maxSubarraySumCircular(new int[]{5, -3, 5});
+        //        System.out.println(1 << 31);
+        //        new RingArray().maxSubarraySumCircular(new int[]{5, -3, 5});
+
+        System.out.println(0.1);
+//        for (double balance = 10; balance != 0; balance -= 0.1) {
+//            System.out.println(balance);
+//            try {
+//                TimeUnit.MILLISECONDS.sleep(10);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+
     }
 
 }

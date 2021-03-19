@@ -30,12 +30,36 @@ public class MergeSort {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println((int)Math.pow(2, 3));
-        Arrays.copyOf(new String[]{}, 1);
+    private int[] temp;
 
+    public void sortRecursive(int[] nums, int left, int right) {
+        if (right <= left) {
+            return;
+        }
+        int mid = (left + right) / 2;
+        sortRecursive(nums, left, mid);
+        sortRecursive(nums, mid+1, right);
+        int left1 = left;
+        int left2 = mid+1;
+        int idx = left;
+        while (left1 <= mid && left2 <= right) {
+            temp[idx++] = nums[left1] < nums[left2] ? nums[left1++] : nums[left2++];
+        }
+        while (left1 <= mid) {
+            temp[idx++] = nums[left1++];
+        }
+        while (left2 <= right) {
+            temp[idx++] = nums[left2++];
+        }
+        System.arraycopy(temp, left, nums, left, right - left + 1);
+    }
+
+
+    public static void main(String[] args) {
         int[] nums = {10, 23, 3, 2, 7, 1, 3, 5};
-        new MergeSort().sort(nums);
+        MergeSort mergeSort = new MergeSort();
+        mergeSort.temp = new int[nums.length];
+        mergeSort.sortRecursive(nums, 0, nums.length - 1);
         System.out.println(Arrays.toString(nums));
     }
 
