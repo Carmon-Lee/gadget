@@ -3,9 +3,11 @@ package demo;
 import java.util.concurrent.ThreadFactory;
 
 import com.lmax.disruptor.BlockingWaitStrategy;
+import com.lmax.disruptor.BusySpinWaitStrategy;
 import com.lmax.disruptor.EventFactory;
 import com.lmax.disruptor.EventHandler;
 import com.lmax.disruptor.RingBuffer;
+import com.lmax.disruptor.WaitStrategy;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
 
@@ -39,10 +41,10 @@ public class DisruptorDemo {
                 (element, sequence, endOfBatch) -> System.out.println("Element: " + element.get());
 
         // 阻塞策略
-        BlockingWaitStrategy strategy = new BlockingWaitStrategy();
+        WaitStrategy strategy = new BusySpinWaitStrategy();
 
         // 指定RingBuffer的大小
-        int bufferSize = 16;
+        int bufferSize = 4;
 
         // 创建disruptor，采用单生产者模式
         Disruptor<Element> disruptor = new Disruptor<>(factory, bufferSize, threadFactory, ProducerType.SINGLE, strategy);
