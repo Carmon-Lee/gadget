@@ -2,6 +2,8 @@ package arp;
 
 import org.apache.logging.log4j.simple.SimpleLogger;
 
+import lombok.ToString;
+
 /**
  * Created on 2021-05-09
  */
@@ -51,5 +53,13 @@ public class NetworkNode {
 
     public void setHub(SwitchHub hub) {
         this.hub = hub;
+    }
+
+    @Override
+    public String toString() {
+        return "NetworkNode{" +
+                "ipAddr='" + ipAddr + '\'' +
+                ", macAddr='" + macAddr + '\'' +
+                '}';
     }
 }

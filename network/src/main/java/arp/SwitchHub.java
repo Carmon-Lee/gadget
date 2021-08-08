@@ -3,6 +3,7 @@ package arp;
 import java.util.HashMap;
 import java.util.Map;
 
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -10,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
  * 交换机
  */
 @Slf4j
+@ToString
 public class SwitchHub {
 
     private String hubId;

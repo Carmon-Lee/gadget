@@ -1,6 +1,6 @@
 package raft.roles;
 
-public enum State {
+public enum Role {
 
     /**
      * on startup, the node is in follower state
