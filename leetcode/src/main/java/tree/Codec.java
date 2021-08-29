@@ -1,10 +1,11 @@
 package tree;
 
-import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.apache.commons.lang3.tuple.Pair;
 
 public class Codec {
 
@@ -16,7 +17,7 @@ public class Codec {
 
     private Pair<Integer, String[]> internalSerialize(TreeNode root, int height) {
         if (root == null) {
-            return new Pair<>(height, new String[]{"n"});
+            return Pair.of(height, new String[]{"n"});
         }
         Pair<Integer, String[]> leftPair = internalSerialize(root.left, height + 1);
         Pair<Integer, String[]> rightPair = internalSerialize(root.right, height + 1);
@@ -37,7 +38,7 @@ public class Codec {
         mergeArr.addAll(Arrays.asList(leftSerStr));
         mergeArr.addAll(Arrays.asList(rightPair.getValue()));
 
-        return new Pair<>(maxHeight, mergeArr.toArray(new String[0]));
+        return Pair.of(maxHeight, mergeArr.toArray(new String[0]));
     }
 
     // Decodes your encoded data to tree.

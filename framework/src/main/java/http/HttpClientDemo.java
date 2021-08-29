@@ -10,12 +10,19 @@ import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.concurrent.FutureCallback;
+import org.apache.http.conn.HttpClientConnectionManager;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.protocol.HttpCoreContext;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -25,38 +32,34 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class HttpClientDemo {
 
-    public static void main(String[] args) throws InterruptedException {
-        ConcurrentMap<String, AtomicInteger> stat = new ConcurrentHashMap<>();
-        stat.put("complete", new AtomicInteger());
-        stat.put("fail", new AtomicInteger());
-        stat.put("cancel", new AtomicInteger());
+    public static void main(String[] args) throws Exception {
+        System.out.println(getTubeShareJumpKwaiLink("start to broadcaset", "111", "222", 1));
+    }
 
-        HttpAsyncClientInitBean bean = new HttpAsyncClientInitBean();
-        try {
-            bean.init();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public static String getTubeShareJumpKwaiLink(String tips, String photoId, String tubeId, int episodeNumber)
+            throws UnsupportedEncodingException {
 
 
-        for (int i = 0; i < 2; i++) {
-            HttpGet httpGet = new HttpGet("http://172.16.7.147:11111/sleep/second");
-//        HttpGet httpGet =new HttpGet("http://local:11112/sleep/second");
-            httpGet.setConfig(buildRequestConfig(true, 2000000));
-            HttpContext httpContext = new BasicHttpContext();
-            HttpAsyncClientInitBean.getCloseableHttpAsyncClient().execute(httpGet, httpContext, new MyFutureCallback(httpContext, stat));
-        }
 
-//        for (int i = 0; i < 1; i++) {
-////            HttpGet httpGet = new HttpGet("http://172.16.7.147:11111/sleep/second");
-//        HttpGet httpGet =new HttpGet("http://localhost:11111/sleep/second");
-//            httpGet.setConfig(buildRequestConfig(true, 2000));
-//            HttpContext httpContext = new BasicHttpContext();
-//            HttpAsyncClientInitBean.getCloseableHttpAsyncClient().execute(httpGet, httpContext, new MyFutureCallback(httpContext, stat));
-//        }
+        String newtips = "start to broadcast";
 
-        TimeUnit.SECONDS.sleep(5);
-        System.out.println(stat);
+
+        String findFriendsWatchTubeInnerJumpUrl = "kwailive://startpush?livetype=3&needdelaystart=1&tips=%s"
+                + "&theaterdatasourcedetail={\"photoId\":\"%s\",\"tubeId\":\"%s\",\"episodeNumber\":%d,"
+                + "\"type\":1}&theatercontrol={\"switchportraitfullscreen\":1,\"openmicdialog\":1}";
+        String findFriendsWatchTubeJumpUrl = "kwai://post?livesource=SHARE_FRIENDS_TOGETHER&tab=live&live_on=true"
+                + "&livesubtype=voiceparty&voicepartytype=theater&innerjumpurls%5B%5D=";
+        String shareUrlH5 = "kwaishare://h5?url=%s";
+        String innerJumpLink =
+                String.format(findFriendsWatchTubeInnerJumpUrl, tips, photoId, tubeId, episodeNumber);
+        String encodedInnerJumpLink = URLEncoder.encode(innerJumpLink,
+                StandardCharsets.UTF_8.toString());
+        encodedInnerJumpLink = encodedInnerJumpLink.replaceAll("\\+", "%20");
+
+        String watchTubeUrl = URLEncoder.encode(findFriendsWatchTubeJumpUrl + encodedInnerJumpLink,
+                StandardCharsets.UTF_8.toString());
+
+        return String.format(shareUrlH5, watchTubeUrl);
     }
 
 
