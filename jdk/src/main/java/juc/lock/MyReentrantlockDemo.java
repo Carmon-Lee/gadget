@@ -1,6 +1,8 @@
 package juc.lock;
 
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author guang.li
@@ -10,13 +12,13 @@ public class MyReentrantlockDemo {
 
 
     public static void main(String[] args) throws InterruptedException {
-        MyReentrantLock lock = new MyReentrantLock(true);
+        Lock lock = new ReentrantLock(true);
 
         Thread t1 = new Thread(() -> {
             lock.lock();
             System.out.println("task 1 locked");
             try {
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.SECONDS.sleep(10);
                 System.out.println("task 1 finished");
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -35,7 +37,7 @@ public class MyReentrantlockDemo {
             lock.lock();
             System.out.println("task 2 locked");
             try {
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.SECONDS.sleep(100);
                 System.out.println("task 2 finished");
             } catch (InterruptedException e) {
                 e.printStackTrace();

@@ -9,12 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>dubbo</artifactId>
+    <artifactId>rpc</artifactId>
     <packaging>pom</packaging>
     <modules>
         <module>dubbo-provider</module>
         <module>dubbo-consumer</module>
         <module>dubbo-facade</module>
+        <module>grpc</module>
     </modules>
 
     <dependencies>

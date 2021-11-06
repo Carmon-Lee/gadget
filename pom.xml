@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>spring</module>
-        <module>dubbo</module>
+        <module>rpc</module>
         <module>netty</module>
         <module>rocketmq</module>
         <module>kafka</module>
@@ -192,6 +192,13 @@
                 <artifactId>fastjson</artifactId>
                 <version>1.2.71</version>
             </dependency>
+
+            <dependency>
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-all</artifactId>
+                <version>1.40.0</version>
+            </dependency>
+
 
         </dependencies>
     </dependencyManagement>
